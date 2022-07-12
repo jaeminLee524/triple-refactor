@@ -27,12 +27,7 @@ public class UserRepositoryTest {
         //given
         String userId = UUID.randomUUID().toString();
 
-        User testUser = User.builder()
-                .email("testA@gmail.com")
-                .name("testA")
-                .password("123456789")
-                .userId(userId)
-                .build();
+        User testUser = User.of("testA@gmail.com", "testA", "123456789", userId);
 
         //when
         User savedUser = userRepository.save(testUser);

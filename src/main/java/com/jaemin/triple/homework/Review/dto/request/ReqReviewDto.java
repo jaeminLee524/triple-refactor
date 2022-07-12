@@ -2,7 +2,6 @@ package com.jaemin.triple.homework.Review.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,7 +15,7 @@ public class ReqReviewDto {
      * @version 1.0.0
      * 작성일 2022/07/04
     **/
-    @Data @Builder @AllArgsConstructor @NoArgsConstructor
+    @Data @AllArgsConstructor @NoArgsConstructor
     public static class CreateReview {
         private String type;
         private String action;

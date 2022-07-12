@@ -31,7 +31,7 @@ public class PlaceController {
 
         String placeId = placeService.createPlace(createReqDto);
 
-        ResPlaceDto.CreateResDto createResDto = ResPlaceDto.CreateResDto.builder().placeId(placeId).build();
+        ResPlaceDto.CreateResDto createResDto = ResPlaceDto.CreateResDto.of(placeId);
 
         return ResponseEntity.ok(Result.createSuccessResult(createResDto));
     }

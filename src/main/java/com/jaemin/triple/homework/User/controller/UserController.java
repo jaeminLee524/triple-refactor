@@ -27,7 +27,7 @@ public class UserController {
 
         String userId = userService.createUser(requestJoin);
 
-        ResUserDto.ResponseJoin responseJoin = ResUserDto.ResponseJoin.builder().userId(userId).build();
+        ResUserDto.ResponseJoin responseJoin = ResUserDto.ResponseJoin.of(userId);
 
         return ResponseEntity.ok(Result.createSuccessResult(responseJoin));
     }

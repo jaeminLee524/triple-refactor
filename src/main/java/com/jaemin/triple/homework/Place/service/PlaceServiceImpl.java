@@ -27,10 +27,7 @@ public class PlaceServiceImpl implements PlaceService{
     @Transactional
     @Override
     public String createPlace(ReqPlaceDto.CreateReqDto createReqDto) {
-        Place createPlace = Place.builder()
-                .name(createReqDto.getName())
-                .placeId(UUID.randomUUID().toString())
-                .build();
+        Place createPlace = Place.of(createReqDto.getName(), UUID.randomUUID().toString());
 
         Place savedPlace = placeRepository.save(createPlace);
 

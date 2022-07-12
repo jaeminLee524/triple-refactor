@@ -42,17 +42,9 @@ class ReviewRepositoryTest {
     void createReview() {
 
         //given
-        User user = User.builder()
-                .email("testA@naver.com")
-                .name("testA")
-                .password("12345678")
-                .userId(UUID.randomUUID().toString())
-                .build();
+        User user = User.of("testA@naver.com", "testA", "12345678", UUID.randomUUID().toString());
 
-        Place place = Place.builder()
-                .name("시그니엘 호텔")
-                .placeId(UUID.randomUUID().toString())
-                .build();
+        Place place = Place.of("시그니엘 호텔", UUID.randomUUID().toString());
 
         Images images1 = Images.of(UUID.randomUUID().toString());
         Images images2 = Images.of(UUID.randomUUID().toString());
@@ -79,17 +71,9 @@ class ReviewRepositoryTest {
     @Test
     void modifyReview() {
         //given
-        User user = User.builder()
-                .email("testB@naver.com")
-                .name("testB")
-                .password("12345678")
-                .userId(UUID.randomUUID().toString())
-                .build();
+        User user = User.of("testB@naver.com", "testB", "12345678", UUID.randomUUID().toString());
 
-        Place place = Place.builder()
-                .name("제주 신라 호텔")
-                .placeId(UUID.randomUUID().toString())
-                .build();
+        Place place = Place.of("제주 신라 호텔", UUID.randomUUID().toString());
 
         userRepository.save(user);
         placeRepository.save(place);

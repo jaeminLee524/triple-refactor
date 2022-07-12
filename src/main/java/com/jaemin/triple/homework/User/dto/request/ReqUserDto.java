@@ -1,7 +1,6 @@
 package com.jaemin.triple.homework.User.dto.request;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -17,7 +16,7 @@ public class ReqUserDto {
      * @version 1.0.0
      * 작성일 2022/07/04
     **/
-    @Data @Builder @AllArgsConstructor @NoArgsConstructor
+    @Data @AllArgsConstructor @NoArgsConstructor
     public static class RequestJoin {
         @NotEmpty(message = "name cannot be null")
         @Size(min = 2, message = "Name not be less than two characters")

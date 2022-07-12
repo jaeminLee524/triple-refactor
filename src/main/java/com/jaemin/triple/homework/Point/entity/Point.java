@@ -9,7 +9,6 @@ import javax.persistence.*;
 
 import static javax.persistence.FetchType.*;
 
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
@@ -33,14 +32,16 @@ public class Point extends BaseEntity {
     @JoinColumn(name = "review_id")
     private Review reviewId;
 
+    public Point(long point, PointType pointType, String pointId, User userId, Review reviewId) {
+        this.point = point;
+        this.pointType = pointType;
+        this.pointId = pointId;
+        this.userId = userId;
+        this.reviewId = reviewId;
+    }
+
     /** 생성 메소드 **/
     public static Point of(long point, PointType pointType, String pointId, User findUser, Review review) {
-        return Point.builder()
-                .point(point)
-                .pointType(pointType)
-                .pointId(pointId)
-                .userId(findUser)
-                .reviewId(review)
-                .build();
+        return new Point(point, pointType, pointId, findUser, review);
     }
 }

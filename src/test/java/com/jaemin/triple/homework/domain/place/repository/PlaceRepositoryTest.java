@@ -22,10 +22,7 @@ public class PlaceRepositoryTest {
     @Test
     void saveHotel() {
         //given
-        Place 제주_신라_호텔 = Place.builder()
-                .name("제주 신라 호텔")
-                .placeId(UUID.randomUUID().toString())
-                .build();
+        Place 제주_신라_호텔 = Place.of("제주 신라 호텔", UUID.randomUUID().toString());
 
         //when
         Place savedPlace = placeRepository.save(제주_신라_호텔);

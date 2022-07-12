@@ -5,10 +5,9 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Builder
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
+@AllArgsConstructor()
 @Entity
 public class User extends BaseEntity {
 
@@ -21,4 +20,15 @@ public class User extends BaseEntity {
     private String password;
     @Column(nullable = false, unique = true)
     private String userId;
+
+    public User(String email, String name, String password, String userId) {
+        this.email = email;
+        this.name = name;
+        this.password = password;
+        this.userId = userId;
+    }
+
+    public static User of(String email, String name, String password, String userId) {
+        return new User(email, name, password, userId);
+    }
 }

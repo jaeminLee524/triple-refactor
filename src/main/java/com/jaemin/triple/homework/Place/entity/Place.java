@@ -5,7 +5,6 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
@@ -17,4 +16,13 @@ public class Place extends BaseEntity {
     private String name;
     @Column(nullable = false, unique = true)
     private String placeId;
+
+    public Place(String name, String placeId) {
+        this.name = name;
+        this.placeId = placeId;
+    }
+
+    public static Place of(String name, String placeId) {
+        return new Place(name, placeId);
+    }
 }
