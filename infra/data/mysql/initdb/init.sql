@@ -1,0 +1,5 @@
+CREATE DATABASE triple;
+
+GRANT ALL PRIVILEGES ON triple.* TO triple_user@"%";
+
+FLUSH PRIVILEGES;

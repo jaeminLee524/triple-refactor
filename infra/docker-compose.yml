@@ -1,0 +1,47 @@
+version: '3.1'
+
+services:
+  db:
+    platform: linux/x86_64    # 추가된 라인
+    restart: always
+    image: mysql:8.0.28
+    container_name: db
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
+      - MYSQL_USER=triple_user
+      - MYSQL_PASSWORD=1234
+      - TZ=Asia/Seoul
+    command:
+      - mysqld
+      - --lower_case_table_names=1 # 대소문자 구분
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - "${MYSQL_PATH}/initdb/init.sql:/docker-entrypoint-initdb.d/1.sql"
+      - "${MYSQL_PATH}/db:/var/lib/mysql" # db 볼륨 처리
+    ports:
+      - 3306:3306
+    networks:
+      - triple
+
+  triple-service:
+    restart: always
+    ports:
+      - 8080:8080
+    container_name: triple-service
+    image: rkwoals524/triple-service-prod:latest
+    environment:
+      - spring.datasource.url=jdbc:mysql://localhost:3306/triple?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true
+    depends_on:
+      - db
+    networks:
+      - triple
+
+networks:
+  triple:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.18.0.0/16
+          gateway: 172.18.0.1
