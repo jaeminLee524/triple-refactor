@@ -57,7 +57,7 @@ public class PointRepositoryCustom {
      **/
     public long getPointSum(String userId) {
         Long sum = queryFactory
-                .select(point1.point.sum())
+                .select(point1.point.sum().coalesce(0L))
                 .from(point1)
                 .where(point1.userId.userId.eq(userId))
                 .fetchOne();

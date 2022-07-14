@@ -1,5 +1,8 @@
 package com.jaemin.triple.homework.Review.repository;
 
+import com.jaemin.triple.homework.Review.entity.QReview;
+import com.jaemin.triple.homework.Review.entity.Review;
+import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -73,6 +76,26 @@ public class ReviewRepositoryCustom {
                 ).fetchFirst();
 
         return fetchOne != null;
+    }
+
+    /**
+     * 해당 장소에 최초 댓글인지 판단
+     * @author jaemin
+     * @version 1.0.0
+     * 작성일 2022/07/14
+    **/
+    public boolean isFirstReviewOnPlace(String reviewId) {
+        String fetchFirst = queryFactory
+                .select(review.reviewId)
+                .from(review)
+                .where(review.placeId.placeId.eq(JPAExpressions.select(review.placeId.placeId)
+                                .from(review)
+                                .where(review.reviewId.eq(reviewId)))
+                        .and(review.reviewId.ne(reviewId))
+                )
+                .fetchFirst();
+
+        return fetchFirst != null;
     }
 
 }

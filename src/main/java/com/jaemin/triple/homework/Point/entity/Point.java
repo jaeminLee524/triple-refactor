@@ -7,6 +7,8 @@ import lombok.*;
 
 import javax.persistence.*;
 
+import java.util.List;
+
 import static javax.persistence.FetchType.*;
 
 @AllArgsConstructor
@@ -44,4 +46,19 @@ public class Point extends BaseEntity {
     public static Point of(long point, PointType pointType, String pointId, User findUser, Review review) {
         return new Point(point, pointType, pointId, findUser, review);
     }
+
+    /**
+     * 퍼사드 패턴의 서브 클래스 제어
+     * @author jaemin
+     * @version 1.0.0
+     * 작성일 2022/07/14
+    **/
+    public enum EventType {
+        REVIEW_ADD, REVIEW_MOD, REVIEW_DELETE;
+
+        public boolean isType() {
+            return List.of(REVIEW_ADD, REVIEW_MOD, REVIEW_DELETE).contains(this);
+        }
+    }
+
 }

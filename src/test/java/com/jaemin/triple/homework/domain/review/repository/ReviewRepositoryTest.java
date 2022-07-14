@@ -7,8 +7,6 @@ import com.jaemin.triple.homework.User.entity.User;
 import com.jaemin.triple.homework.Place.repository.PlaceRepository;
 import com.jaemin.triple.homework.Review.repository.ReviewRepository;
 import com.jaemin.triple.homework.User.repository.UserRepository;
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -85,7 +83,7 @@ class ReviewRepositoryTest {
         reviewRepository.save(review);
 
         //when
-        review.setContent("dirty!!!!!!!!!!!");
+        review.updateContent("dirty!!!!!!!!!!!");
 
         //then
         assertThat(review.getContent()).isEqualTo("dirty!!!!!!!!!!!");

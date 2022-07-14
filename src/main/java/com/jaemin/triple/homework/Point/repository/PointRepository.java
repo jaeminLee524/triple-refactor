@@ -7,6 +7,6 @@ import org.springframework.data.repository.query.Param;
 
 public interface PointRepository extends JpaRepository<Point, Long> {
 
-    @Query("select SUM(p.point) from Point p where p.reviewId.id =:review_id")
+    @Query("SELECT SUM(p.point) FROM Point p WHERE p.reviewId.id =:review_id")
     long selectTotals(@Param("review_id") Long review_id);
 }
